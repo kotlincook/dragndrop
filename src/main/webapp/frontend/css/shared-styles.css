@@ -1,0 +1,33 @@
+.board {
+	border: 10px solid #702020;
+	text-align: center;
+	width: 90vw;
+	height: 90vw;
+	min-width: 240px;
+	min-height: 240px;
+	margin: 15px;
+}
+.square {
+	height: 12.5%;
+	width: 12.5%;
+	max-height: 100vw;
+	max-width: 100vw;
+	min-height: 30px;
+	min-width: 30px;
+	float: left;
+	padding: 0;
+	margin: auto;
+}
+.white {
+	background-color: lightgoldenrodyellow;
+}
+.black {
+	background-color: royalblue;
+}
+.piece {
+	position: relative;
+	top: 10%;
+	bottom: 10%;
+	width: 80%;
+	height: 80%;
+}
