@@ -1,3 +1,7 @@
+.hoverActive {
+	background-color: #ffffcc;
+}
+
 .board {
 	border: 10px solid #702020;
 	text-align: center;

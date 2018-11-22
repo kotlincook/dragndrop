@@ -1,14 +1,9 @@
 package de.kotlincook.vaadin
 
-import com.vaadin.flow.component.ComponentEvent
-import com.vaadin.flow.component.DomEvent
 import com.vaadin.flow.component.UI
 import com.vaadin.flow.component.html.Div
 
-@DomEvent("drop")
-class DropEvent(source: Square, fromClient: Boolean) : ComponentEvent<Square>(source, fromClient)
-
-class Square() : Div() {
+class Square : Div() {
 
     init {
         setId("square")
