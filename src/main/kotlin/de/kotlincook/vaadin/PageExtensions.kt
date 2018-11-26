@@ -1,12 +1,13 @@
 package de.kotlincook.vaadin
 
+import com.vaadin.flow.component.Component
 import com.vaadin.flow.component.ComponentEvent
 import com.vaadin.flow.component.DomEvent
 import com.vaadin.flow.component.page.Page
 import com.vaadin.flow.dom.Element
 
-
-
+@DomEvent("drop")
+class DropEvent<T : Component>(source: T, fromClient: Boolean) : ComponentEvent<T>(source, fromClient)
 
 fun Page.addDropSupport(element: Element) {
     executeJavaScript("""

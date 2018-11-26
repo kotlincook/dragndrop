@@ -13,13 +13,16 @@ class HorView : HorizontalLayout() {
     init {
         setSizeFull() // muss, damit Prozente funktionieren
         val treeView = TreeView()
-        val designerView = DesignerView()
+//        val designerView = DesignerView()
         val personView = PersonView()
+        val rudolfView = RudolfView()
         treeView.width = "20%"
-        designerView.width = "50%"
+//        designerView.width = "50%"
+        rudolfView.width = "50%"
         personView.width = "30%"
         add(treeView)
-        add(designerView)
+//        add(designerView)
+        add(rudolfView)
         add(personView)
 //        val label = Label("Hallo Weltenbummler")
 //        val button = Button("Klick mich mal")
