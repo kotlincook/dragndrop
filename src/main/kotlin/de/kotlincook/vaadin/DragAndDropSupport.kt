@@ -3,8 +3,24 @@ package de.kotlincook.vaadin
 import com.vaadin.flow.component.Component
 import com.vaadin.flow.component.ComponentEvent
 import com.vaadin.flow.component.DomEvent
+import com.vaadin.flow.component.UI
 import com.vaadin.flow.component.page.Page
 import com.vaadin.flow.dom.Element
+
+const val ATTR_KEY_DRAGGED_COMPONENT = "DRAGGED_COMPONENT"
+
+fun pullDraggedComponent(): Component? {
+    val draggedComp = UI.getCurrent().session.getAttribute(ATTR_KEY_DRAGGED_COMPONENT) as Component?
+    UI.getCurrent().session.setAttribute(ATTR_KEY_DRAGGED_COMPONENT, null)
+    return draggedComp
+}
+
+fun pushDraggedComponent(component: Component) {
+    UI.getCurrent().session.setAttribute(ATTR_KEY_DRAGGED_COMPONENT, component)
+}
+
+@DomEvent("dragstart")
+class DragstartEvent<T : Component>(source : T, fromClient : Boolean) : ComponentEvent<T>(source, fromClient)
 
 @DomEvent("drop")
 class DropEvent<T : Component>(source: T, fromClient: Boolean) : ComponentEvent<T>(source, fromClient)

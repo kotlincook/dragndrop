@@ -4,7 +4,7 @@ import com.vaadin.flow.component.UI
 import com.vaadin.flow.component.html.Image
 
 class DropLine(width: String = "100%",
-               thickness: String = "6px",
+               thickness: String = "10px",
                dropAction: DropLine.(DropEvent<*>) -> Unit) : Image("frontend/img/transparent1x1.png", "green1x1") {
 
     init {
