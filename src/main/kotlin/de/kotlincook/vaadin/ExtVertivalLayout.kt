@@ -5,7 +5,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout
 
 open class ExtVertivalLayout: VerticalLayout() {
 
-    val components: MutableList<Component> = mutableListOf()
+    protected val components: MutableList<Component> = mutableListOf()
 
     private fun consistencyCheck() {
         println("CONSISTENCYCONSISTENCYCONSISTENCYCONSISTENCYCONSISTENCYCONSISTENCY")
@@ -39,6 +39,10 @@ open class ExtVertivalLayout: VerticalLayout() {
     fun move(compToMove: Component, beforeMe: Component) {
         components.remove(compToMove)
         insert(components.indexOf(beforeMe), compToMove)
+    }
+
+    fun move(pos: Int, beforeMe: Component) {
+        move(components[pos], beforeMe)
     }
 
     fun insert(beforeMe: Component, vararg compsToInsert: Component) {

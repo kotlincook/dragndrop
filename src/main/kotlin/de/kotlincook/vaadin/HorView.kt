@@ -15,14 +15,14 @@ class HorView : HorizontalLayout() {
         val treeView = TreeView()
 //        val designerView = DesignerView()
         val personView = PersonView()
-        val rudolfView = RudolfView()
+        val mainView = KarinView()
         treeView.width = "20%"
 //        designerView.width = "50%"
-        rudolfView.width = "50%"
+        mainView.width = "50%"
         personView.width = "30%"
         add(treeView)
 //        add(designerView)
-        add(rudolfView)
+        add(mainView)
         add(personView)
 //        val label = Label("Hallo Weltenbummler")
 //        val button = Button("Klick mich mal")

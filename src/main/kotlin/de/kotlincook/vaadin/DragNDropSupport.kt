@@ -10,20 +10,25 @@ import com.vaadin.flow.dom.Element
 const val ATTR_KEY_DRAGGED_COMPONENT = "DRAGGED_COMPONENT"
 
 fun pullDraggedComponent(): Component? {
-    val draggedComp = UI.getCurrent().session.getAttribute(ATTR_KEY_DRAGGED_COMPONENT) as Component?
-    UI.getCurrent().session.setAttribute(ATTR_KEY_DRAGGED_COMPONENT, null)
+    val session = UI.getCurrent().session
+    val draggedComp = session.getAttribute(ATTR_KEY_DRAGGED_COMPONENT) as Component?
+    session.setAttribute(ATTR_KEY_DRAGGED_COMPONENT, null)
     return draggedComp
 }
 
 fun pushDraggedComponent(component: Component) {
-    UI.getCurrent().session.setAttribute(ATTR_KEY_DRAGGED_COMPONENT, component)
+    val session = UI.getCurrent().session
+    session.setAttribute(ATTR_KEY_DRAGGED_COMPONENT, component)
 }
+
 
 @DomEvent("dragstart")
 class DragstartEvent<T : Component>(source : T, fromClient : Boolean) : ComponentEvent<T>(source, fromClient)
 
+
 @DomEvent("drop")
 class DropEvent<T : Component>(source: T, fromClient: Boolean) : ComponentEvent<T>(source, fromClient)
+
 
 fun Page.addDropSupport(element: Element) {
     executeJavaScript("""
@@ -45,13 +50,15 @@ fun Page.addDropSupport(element: Element) {
     |   // this.style.backgroundColor = 'yellow';
     |   e.preventDefault();
     |}
-    |$0.addEventListener('dragover', handleDragover, false);
-    |$0.addEventListener('dragenter', handleDragEnter, false);
-    |$0.addEventListener('dragleave', handleDragLeave, false);
-    |$0.addEventListener('drop', handleDrop, false);
+    |// $0 kann unter Umständen wirklich null sein
+    |if ($0 != null) {
+    |   $0.addEventListener('dragover', handleDragover, false);
+    |   $0.addEventListener('dragenter', handleDragEnter, false);
+    |   $0.addEventListener('dragleave', handleDragLeave, false);
+    |   $0.addEventListener('drop', handleDrop, false);
+    |}
     """.trimMargin(), element)
 }
-
 
 fun Page.addDragSupport(element: Element) {
     element.setAttribute("draggable", "true")
@@ -66,7 +73,12 @@ fun Page.addDragSupport(element: Element) {
     |function handleDragEnd(e) {
     |   this.style.opacity = '';
     |}
-    |$0.addEventListener('dragstart', handleDragStart, false);
-    |$0.addEventListener('dragend', handleDragEnd, false);
+    |
+    |// $0 kann unter Umständen wirklich null sein
+    |if ($0 != null) {
+    |   $0.addEventListener('dragstart', handleDragStart, false);
+    |   $0.addEventListener('dragend', handleDragEnd, false);
+    |}
     """.trimMargin(), element)
+
 }
