@@ -18,7 +18,7 @@ class BricksView : DragNDropVerticalLayout() {
     }
 
     override fun createDropArea(): Component {
-        return DropJoint { e ->
+        return DropJoint {
             val draggedComp = pullDraggedComponent() ?: return@DropJoint
             when (draggedComp) {
                 is Brick -> move(this, draggedComp)

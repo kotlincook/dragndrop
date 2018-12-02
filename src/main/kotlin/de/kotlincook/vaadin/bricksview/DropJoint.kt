@@ -12,10 +12,7 @@ class DropJoint(width: String = "100%",
     init {
         this.width = width
         this.height = thickness
-
         UI.getCurrent().page.addDropSupport(element)
-        if (dropAction != null) {
-            addListener(DropEvent::class.java, { e: DropEvent<*> -> dropAction(e)})
-        }
+        addListener(DropEvent::class.java, { e: DropEvent<*> -> dropAction(e)})
     }
 }
