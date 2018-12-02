@@ -1,4 +1,4 @@
-package de.kotlincook.vaadin
+package de.kotlincook.vaadin.vaadinutil
 
 import com.vaadin.flow.component.Component
 import com.vaadin.flow.component.orderedlayout.VerticalLayout

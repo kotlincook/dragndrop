@@ -1,4 +1,4 @@
-package de.kotlincook.vaadin
+package de.kotlincook.vaadin.sampleview.samples
 
 class TextAreaSample : SampleElement() {
 

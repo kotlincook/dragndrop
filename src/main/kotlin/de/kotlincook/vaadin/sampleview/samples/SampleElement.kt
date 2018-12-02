@@ -1,10 +1,10 @@
-package de.kotlincook.vaadin
+package de.kotlincook.vaadin.sampleview.samples
 
 import com.vaadin.flow.component.*
 import com.vaadin.flow.component.html.Div
-import com.vaadin.flow.component.html.Image
-import com.vaadin.flow.component.html.Label
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout
+import de.kotlincook.vaadin.vaadinutil.DragstartEvent
+import de.kotlincook.vaadin.vaadinutil.addDragSupport
+import de.kotlincook.vaadin.vaadinutil.pushDraggedComponent
 
 abstract class SampleElement : Div() {
 
@@ -13,7 +13,8 @@ abstract class SampleElement : Div() {
 
         UI.getCurrent().page.addDragSupport(element)
         addListener(DragstartEvent::class.java) {
-            e -> pushDraggedComponent(e.source)
+            e ->
+            pushDraggedComponent(e.source)
         }
     }
 }

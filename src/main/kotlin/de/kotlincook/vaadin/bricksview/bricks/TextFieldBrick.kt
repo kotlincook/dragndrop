@@ -1,11 +1,11 @@
-package de.kotlincook.vaadin
+package de.kotlincook.vaadin.bricksview.bricks
 
 import com.vaadin.flow.component.textfield.TextField
 
-class TextFieldLine : Line() {
+class TextFieldBrick : Brick() {
 
     init {
-        className += " textfield-line"
+        className += " textfield-brick"
         val textField = TextField()
         textField.className = "textfield"
         textField.value = "text field value"

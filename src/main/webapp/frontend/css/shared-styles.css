@@ -19,7 +19,7 @@
 	background-color: whitesmoke;
 }
 
-.line {
+.brick {
 	position: relative;
 	width: 100%;
 	padding: 0;
@@ -27,15 +27,15 @@
 	background-color: whitesmoke;
 }
 
-.label-line {
+.label-brick {
 	height: 28px;
 }
 
-.textfield-line {
+.textfield-brick {
 	height: 44px;
 }
 
-.textarea-line {
+.textarea-brick {
 	height: 80px;
 }
 

@@ -1,11 +1,11 @@
-package de.kotlincook.vaadin
+package de.kotlincook.vaadin.bricksview.bricks
 
 import com.vaadin.flow.component.html.Label
 
-class LabelLine : Line() {
+class LabelBrick : Brick() {
 
     init {
-        className += " label-line"
+        className += " label-brick"
         val label = Label("")
         label.className = "label"
         label.text = "label text"

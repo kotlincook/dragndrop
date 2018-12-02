@@ -1,11 +1,9 @@
-package de.kotlincook.vaadin
+package de.kotlincook.vaadin.treeview
 
 import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.treegrid.TreeGrid
 import java.util.Arrays
-
-
 
 class TreeView : VerticalLayout() {
     init {
