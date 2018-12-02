@@ -7,6 +7,13 @@
 	background-color: whitesmoke;
 }
 
+.textarea {
+	margin-left: 40px;
+	max-height: 72px;
+	min-height: 72px;
+	background-color: whitesmoke;
+}
+
 .label {
 	margin-left: 40px;
 	background-color: whitesmoke;
@@ -26,6 +33,10 @@
 
 .textfield-line {
 	height: 44px;
+}
+
+.textarea-line {
+	height: 80px;
 }
 
 

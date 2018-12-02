@@ -6,13 +6,6 @@ import com.vaadin.flow.component.Component
 class KarinView : DragNDropVerticalLayout() {
     init {
         isSpacing = false
-//        append(Label("Weltenmann"))
-//        append(Label("Ich"))
-//        append(Line())
-//        append(Label("bin"))
-//        append(Line())
-//        append(Label("beim"))
-//        append(Label("Pinkeln"))
     }
 
 
@@ -22,6 +15,7 @@ class KarinView : DragNDropVerticalLayout() {
             when(draggedComp) {
                 is Line -> move(this, draggedComp)
                 is TextFieldSample -> insert(this, TextFieldLine())
+                is TextAreaSample -> insert(this, TextAreaLine())
                 is LabelSample -> insert(this, LabelLine())
                 else -> insert(this, LabelLine())
             }
