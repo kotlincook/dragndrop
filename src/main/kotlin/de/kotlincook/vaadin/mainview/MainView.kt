@@ -10,19 +10,16 @@ import de.kotlincook.vaadin.treeview.TreeView
 
 @Route(value = "main", layout = MainLayout::class)
 class MainView : HorizontalLayout() {
-    companion object {
-        const val VIEW_NAME = "MyView"
-    }
     init {
         setSizeFull() // muss, damit Prozente funktionieren
         val treeView = TreeView()
-        val personView = SampleView()
-        val mainView = BricksView()
+        val sampleView = SampleView()
+        val bricksView = BricksView()
         treeView.width = "20%"
-        mainView.width = "50%"
-        personView.width = "30%"
+        bricksView.width = "50%"
+        sampleView.width = "30%"
         add(treeView)
-        add(mainView)
-        add(personView)
+        add(bricksView)
+        add(sampleView)
     }
 }

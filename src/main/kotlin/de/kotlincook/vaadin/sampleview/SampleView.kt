@@ -8,7 +8,7 @@ import de.kotlincook.vaadin.sampleview.samples.TextFieldSample
 
 class SampleView : VerticalLayout() {
     init {
-        add(Label("Liste der einzufügden Elemente"))
+        add(Label("Liste einfügbarer Elemente"))
         add(TextFieldSample())
         add(TextAreaSample())
         add(LabelSample())

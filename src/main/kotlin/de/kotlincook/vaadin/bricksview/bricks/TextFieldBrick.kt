@@ -10,6 +10,7 @@ class TextFieldBrick : Brick() {
         textField.className = "textfield"
         textField.value = "text field value"
         add(textField)
+        add(TrashImage())
     }
 
 }

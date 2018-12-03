@@ -63,3 +63,11 @@
 	background-image: url('/frontend/img/label.png');
 }
 
+.trash {
+	height: 20px;
+	margin-right: 10px;
+	margin-top: 5px;
+	float:right;
+	cursor: pointer;
+}
+

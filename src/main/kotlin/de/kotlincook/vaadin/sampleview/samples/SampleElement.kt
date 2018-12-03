@@ -12,8 +12,7 @@ abstract class SampleElement : Div() {
         className = "sample-element"
 
         UI.getCurrent().page.addDragSupport(element)
-        addListener(DragstartEvent::class.java) {
-            e ->
+        addListener(DragstartEvent::class.java) { e ->
             pushDraggedComponent(e.source)
         }
     }
