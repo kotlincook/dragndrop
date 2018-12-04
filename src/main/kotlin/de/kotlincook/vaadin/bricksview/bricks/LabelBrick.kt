@@ -11,7 +11,7 @@ class LabelBrick : Brick() {
         label.className = "label"
         label.text = "label text"
         add(label)
-        add(TrashImage())
+        add(Trash())
     }
 
 }

@@ -10,6 +10,7 @@ class TextAreaBrick : Brick() {
         textArea.className = "textarea"
         textArea.value = "text area text"
         add(textArea)
+        add(Trash())
     }
 
 }
