@@ -5,7 +5,7 @@ import com.vaadin.flow.component.textfield.TextField
 class TextFieldBrick : Brick() {
 
     init {
-        className += " textfield-brick"
+        className = "brick textfield-brick"
         val textField = TextField()
         textField.className = "textfield"
         textField.value = "text field value"

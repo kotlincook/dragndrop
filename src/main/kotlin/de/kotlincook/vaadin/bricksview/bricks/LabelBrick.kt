@@ -6,7 +6,7 @@ import com.vaadin.flow.component.html.Label
 class LabelBrick : Brick() {
 
     init {
-        className += " label-brick"
+        className = "brick label-brick"
         val label = Label("")
         label.className = "label"
         label.text = "label text"

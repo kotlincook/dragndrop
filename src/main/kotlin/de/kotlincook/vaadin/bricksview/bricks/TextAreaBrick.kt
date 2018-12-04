@@ -5,7 +5,7 @@ import com.vaadin.flow.component.textfield.TextArea
 class TextAreaBrick : Brick() {
 
     init {
-        className += " textarea-brick"
+        className = "brick textarea-brick"
         val textArea = TextArea()
         textArea.className = "textarea"
         textArea.value = "text area text"

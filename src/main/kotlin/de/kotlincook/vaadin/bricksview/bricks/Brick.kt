@@ -9,7 +9,7 @@ import de.kotlincook.vaadin.vaadinutil.pushDraggedComponent
 abstract class Brick : Div() {
 
     init {
-        className = "brick"
+//        className = "brick"
         UI.getCurrent().page.addDragSupport(element)
         addListener(DragstartEvent::class.java) { e ->
             pushDraggedComponent(e.source)
