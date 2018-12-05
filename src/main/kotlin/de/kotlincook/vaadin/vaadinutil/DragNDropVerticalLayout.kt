@@ -32,7 +32,8 @@ abstract class DragNDropVerticalLayout : VerticalLayout() {
 
     fun move(beforeMe: Component, compToMove: Component) {
         validateToBeEssentialComp(compToMove)
-        delete(compToMove)
+        essentialComps.remove(compToMove)
+        remove(compToMove)
         insert(beforeMe, compToMove)
     }
 
@@ -40,6 +41,7 @@ abstract class DragNDropVerticalLayout : VerticalLayout() {
         validateToBeEssentialComp(compToDelete)
         essentialComps.remove(compToDelete)
         remove(compToDelete)
+        implantDropAreas()
     }
 
     protected fun implantDropAreas() {

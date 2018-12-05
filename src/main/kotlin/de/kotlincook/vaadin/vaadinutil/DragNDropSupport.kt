@@ -62,7 +62,7 @@ fun Page.addDropSupport(element: Element) {
 
 fun Page.addDragSupport(element: Element) {
     element.setAttribute("draggable", "true")
-    element.setAttribute("style", "cursor:move")
+    element.setAttribute("style", "cursor:grabbing")
     executeJavaScript("""
     |function handleDragStart(e) {
     |   console.log("START")
