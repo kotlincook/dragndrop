@@ -2,6 +2,8 @@ package de.kotlincook.vaadin.vaadinutil
 
 import com.vaadin.flow.component.Component
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
+import de.kotlincook.vaadin.bricksview.DropJoint
+import kotlin.streams.toList
 
 abstract class DragNDropVerticalLayout : VerticalLayout() {
 
@@ -9,12 +11,14 @@ abstract class DragNDropVerticalLayout : VerticalLayout() {
 
     init {
         implantDropAreas()
+        consistencyCheck()
     }
 
     fun append(vararg compsToAdd: Component) {
         validateNotToBeAnEssentialComp(compsToAdd)
         essentialComps.addAll(compsToAdd)
         implantDropAreas()
+        consistencyCheck()
     }
 
     fun insert(beforeMe: Component, vararg compsToAdd: Component) {
@@ -28,6 +32,7 @@ abstract class DragNDropVerticalLayout : VerticalLayout() {
             essentialComps.addAll(index, compsToAdd.asList())
         }
         implantDropAreas()
+        consistencyCheck()
     }
 
     fun move(beforeMe: Component, compToMove: Component) {
@@ -35,6 +40,7 @@ abstract class DragNDropVerticalLayout : VerticalLayout() {
         essentialComps.remove(compToMove)
         remove(compToMove)
         insert(beforeMe, compToMove)
+        consistencyCheck()
     }
 
     fun delete(compToDelete: Component) {
@@ -42,6 +48,7 @@ abstract class DragNDropVerticalLayout : VerticalLayout() {
         essentialComps.remove(compToDelete)
         remove(compToDelete)
         implantDropAreas()
+        consistencyCheck()
     }
 
     protected fun implantDropAreas() {
@@ -80,5 +87,21 @@ abstract class DragNDropVerticalLayout : VerticalLayout() {
             if (found && comp in essentialComps) return comp
         }
         return null
+    }
+
+
+    private fun consistencyCheck() {
+        var expectDropArea = true
+        var idx = 0
+        for (comp in children) {
+            require(
+                if (expectDropArea) (comp is DropJoint)
+                else  comp == essentialComps[idx++]
+            ) {
+                "Consistency check failed: " +
+                "essentialComps = $essentialComps, children = ${children.toList()}"
+            }
+            expectDropArea = !expectDropArea
+        }
     }
 }
