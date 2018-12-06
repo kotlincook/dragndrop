@@ -1,7 +1,9 @@
 package de.kotlincook.vaadin.bricksview.bricks
 
 import com.vaadin.flow.component.html.Label
+import de.kotlincook.vaadin.bricksview.BricksView
 import de.kotlincook.vaadin.model.SafeModel
+import de.kotlincook.vaadin.vaadinutil.ancestor3
 
 class LabelBrick : Brick() {
     override fun select() {
@@ -19,7 +21,7 @@ class LabelBrick : Brick() {
         label.text = "label text"
         add(label)
         add(Trash{
-            SafeModel.bricksView.delete(this)
+            ancestor3(BricksView::class)!!.delete(this)
         })
     }
 

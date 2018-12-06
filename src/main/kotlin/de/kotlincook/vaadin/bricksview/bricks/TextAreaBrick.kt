@@ -1,8 +1,10 @@
 package de.kotlincook.vaadin.bricksview.bricks
 
 import com.vaadin.flow.component.textfield.TextArea
-import de.kotlincook.vaadin.model.SafeModel
+import de.kotlincook.vaadin.bricksview.BricksView
 import de.kotlincook.vaadin.vaadinutil.Selectable
+import de.kotlincook.vaadin.vaadinutil.ancestor2
+import de.kotlincook.vaadin.vaadinutil.ancestor3
 
 class TextAreaBrick : Brick() {
 
@@ -13,7 +15,8 @@ class TextAreaBrick : Brick() {
         textArea.value = "text area text"
         add(textArea)
         add(Trash{
-            SafeModel.bricksView.delete(this)
+//            ancestor2<BricksView>()!!.delete(this)
+            ancestor3(BricksView::class)!!.delete(this)
         })
         add(SelectArea())
     }

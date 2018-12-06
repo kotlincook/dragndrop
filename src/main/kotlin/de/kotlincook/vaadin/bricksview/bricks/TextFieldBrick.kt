@@ -1,7 +1,9 @@
 package de.kotlincook.vaadin.bricksview.bricks
 
 import com.vaadin.flow.component.textfield.TextField
-import de.kotlincook.vaadin.model.SafeModel
+import de.kotlincook.vaadin.bricksview.BricksView
+import de.kotlincook.vaadin.vaadinutil.ancestor2
+import de.kotlincook.vaadin.vaadinutil.ancestor3
 
 class TextFieldBrick : Brick() {
     override fun select() {
@@ -19,8 +21,11 @@ class TextFieldBrick : Brick() {
         textField.value = "text field value"
         add(textField)
         add(Trash{
-            SafeModel.bricksView.delete(this)
+            ancestor3(BricksView::class)!!.delete(this)
         })
+//        add(Trash{
+//            SafeModel.bricksView.delete(this)
+//        })
     }
 
 }
