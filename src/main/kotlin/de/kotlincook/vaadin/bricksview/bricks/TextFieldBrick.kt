@@ -2,17 +2,11 @@ package de.kotlincook.vaadin.bricksview.bricks
 
 import com.vaadin.flow.component.textfield.TextField
 import de.kotlincook.vaadin.bricksview.BricksView
-import de.kotlincook.vaadin.vaadinutil.ancestor2
-import de.kotlincook.vaadin.vaadinutil.ancestor3
+import de.kotlincook.vaadin.bricksview.SelectArea
+import de.kotlincook.vaadin.bricksview.Trash
+import de.kotlincook.vaadin.vaadinutil.ancestor
 
 class TextFieldBrick : Brick() {
-    override fun select() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun unselect() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     init {
         className = "brick textfield-brick"
@@ -20,12 +14,12 @@ class TextFieldBrick : Brick() {
         textField.className = "textfield"
         textField.value = "text field value"
         add(textField)
-        add(Trash{
-            ancestor3(BricksView::class)!!.delete(this)
+        add(Trash {
+            ancestor(BricksView::class).delete(this)
         })
-//        add(Trash{
-//            SafeModel.bricksView.delete(this)
-//        })
+        add(SelectArea {
+            select()
+        })
     }
 
 }

@@ -2,17 +2,11 @@ package de.kotlincook.vaadin.bricksview.bricks
 
 import com.vaadin.flow.component.html.Label
 import de.kotlincook.vaadin.bricksview.BricksView
-import de.kotlincook.vaadin.model.SafeModel
-import de.kotlincook.vaadin.vaadinutil.ancestor3
+import de.kotlincook.vaadin.bricksview.SelectArea
+import de.kotlincook.vaadin.bricksview.Trash
+import de.kotlincook.vaadin.vaadinutil.ancestor
 
 class LabelBrick : Brick() {
-    override fun select() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun unselect() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     init {
         className = "brick label-brick"
@@ -20,8 +14,11 @@ class LabelBrick : Brick() {
         label.className = "label"
         label.text = "label text"
         add(label)
-        add(Trash{
-            ancestor3(BricksView::class)!!.delete(this)
+        add(Trash {
+            ancestor(BricksView::class).delete(this)
+        })
+        add(SelectArea {
+            select()
         })
     }
 

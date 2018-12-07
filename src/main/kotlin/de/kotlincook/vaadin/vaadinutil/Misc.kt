@@ -3,7 +3,7 @@ package de.kotlincook.vaadin.vaadinutil
 import com.vaadin.flow.component.Component
 import kotlin.reflect.KClass
 
-fun <T : Any>Component.ancestor3(clazz: KClass<T>): T? {
+fun <T : Any>Component.ancestorOrNull(clazz: KClass<T>): T? {
     var candidate = this
     repeat(100) {
         if (candidate::class == clazz) return candidate as T
@@ -11,6 +11,11 @@ fun <T : Any>Component.ancestor3(clazz: KClass<T>): T? {
         candidate = candidate.parent.get()
     }
     throw IllegalStateException("Ancestor search exceeds 100 iterations")
+}
+
+fun <T : Any>Component.ancestor(clazz: KClass<T>): T {
+    return ancestorOrNull(clazz)?:
+    throw IllegalStateException("There is no ancestor with class $clazz.")
 }
 
 
