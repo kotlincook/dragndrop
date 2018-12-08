@@ -1,13 +1,11 @@
 package de.kotlincook.vaadin.treeview
 
-import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.treegrid.TreeGrid
-import java.util.Arrays
+import java.util.*
 
 class TreeView : VerticalLayout() {
     init {
-        add(Label("Eier"))
         val grid = TreeGrid(Node::class.java)
         grid.setHierarchyColumn("name")
 
@@ -19,8 +17,6 @@ class TreeView : VerticalLayout() {
         all.forEach { p -> grid.getTreeData().addItem(p.parent, p) }
 
         add(grid)
-
-
     }
 
 }

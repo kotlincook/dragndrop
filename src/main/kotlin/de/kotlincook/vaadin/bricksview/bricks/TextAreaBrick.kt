@@ -1,5 +1,6 @@
 package de.kotlincook.vaadin.bricksview.bricks
 
+import com.vaadin.flow.component.ClickEvent
 import com.vaadin.flow.component.textfield.TextArea
 import de.kotlincook.vaadin.bricksview.BricksView
 import de.kotlincook.vaadin.bricksview.Copy
@@ -21,9 +22,12 @@ class TextAreaBrick : Brick() {
         add(Copy {
             ancestor(BricksView::class).double(this, this.clone())
         })
-        add(SelectArea {
+        addListener(ClickEvent::class.java) {
             select()
-        })
+        }
+//        add(SelectArea {
+//            select()
+//        })
     }
 
     override fun clone(): TextAreaBrick {
