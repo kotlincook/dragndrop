@@ -21,5 +21,8 @@ abstract class Brick : Div() {
         }
         ancestor(this::class).switchCssClassRecursively("brick-nonSelected", "brick-selected")
     }
+
+    abstract fun clone(): Brick
+
 }
 

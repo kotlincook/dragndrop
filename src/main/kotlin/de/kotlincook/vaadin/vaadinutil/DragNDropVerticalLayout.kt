@@ -1,8 +1,10 @@
 package de.kotlincook.vaadin.vaadinutil
 
+import com.google.gson.Gson
 import com.vaadin.flow.component.Component
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import de.kotlincook.vaadin.bricksview.DropJoint
+import org.apache.commons.lang3.SerializationUtils
 import kotlin.streams.toList
 
 abstract class DragNDropVerticalLayout : VerticalLayout() {
@@ -51,6 +53,11 @@ abstract class DragNDropVerticalLayout : VerticalLayout() {
         consistencyCheck()
     }
 
+    fun double(afterMe: Component, compToAdd: Component) {
+        val component = findCompAfter(afterMe)
+        insert(component!!, compToAdd)
+    }
+
     protected fun implantDropAreas() {
         removeAll()
         super.add(createDropArea())
@@ -76,19 +83,23 @@ abstract class DragNDropVerticalLayout : VerticalLayout() {
         }
     }
 
-    /**
-     *
-     * @param component must be
-     */
     private fun findEssentialCompAfter(component: Component): Component? {
         var found = false
-        for (comp in children) {
-            if (comp == component) found = true
-            if (found && comp in essentialComps) return comp
+        for (child in children) {
+            if (child == component) found = true
+            if (found && child in essentialComps) return child
         }
         return null
     }
 
+    private fun findCompAfter(component: Component): Component? {
+        var found = false
+        for (child in children) {
+            if (found) return child
+            if (child == component) found = true
+        }
+        return null
+    }
 
     private fun consistencyCheck() {
         var expectDropArea = true
