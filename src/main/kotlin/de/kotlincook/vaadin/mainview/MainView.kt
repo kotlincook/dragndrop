@@ -4,6 +4,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout
 import com.vaadin.flow.router.Route
 import de.kotlincook.MainLayout
 import de.kotlincook.vaadin.bricksview.BricksView
+import de.kotlincook.vaadin.leftview.LeftView
 import de.kotlincook.vaadin.sampleview.SampleView
 import de.kotlincook.vaadin.treeview.TreeView
 
@@ -13,12 +14,14 @@ class MainView : HorizontalLayout() {
     init {
         setSizeFull() // muss, damit Prozente funktionieren
         val treeView = TreeView()
-        val sampleView = SampleView()
+        val leftView = LeftView()
         val bricksView = BricksView()
-        treeView.width = "20%"
+        val sampleView = SampleView()
+        leftView.width = "20%"
+//        treeView.width = "20%"
         bricksView.width = "50%"
         sampleView.width = "30%"
-        add(treeView)
+        add(leftView)
         add(bricksView)
         add(sampleView)
     }
