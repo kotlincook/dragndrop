@@ -9,7 +9,7 @@ import kotlin.streams.toList
 
 abstract class DragNDropVerticalLayout : VerticalLayout() {
 
-    protected val essentialComps: MutableList<Component> = mutableListOf()
+    val essentialComps: MutableList<Component> = mutableListOf()
 
     init {
         implantDropAreas()

@@ -1,6 +1,7 @@
 package de.kotlincook.vaadin.bricksview.bricks
 
 import com.vaadin.flow.component.ClickEvent
+import com.vaadin.flow.component.Key
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.data.binder.Binder
 import com.vaadin.flow.data.binder.PropertyId
@@ -14,13 +15,16 @@ import kotlin.streams.toList
 
 class TextFieldBrick : Brick() {
 
-    @PropertyId("value")
-    val textField = TextField()
+    val textField = TextField().apply {
+        className = "textfield"
+        value = "text field valueField"
+    }
+    val binder =  Binder(TextfieldBean::class.java).apply {
+        forMemberField(textField).bind("value")
+    }
 
     init {
         className = "brick textfield-brick"
-        textField.className = "textfield"
-        textField.value = "text field value"
         add(textField)
 
         add(Trash {
@@ -30,10 +34,15 @@ class TextFieldBrick : Brick() {
             ancestor(BricksView::class).double(this, this.clone())
         })
         addListener(ClickEvent::class.java) {
-            val binder =  Binder(TextfieldBean::class.java)
-            binder.forMemberField(textField)
-            binder.bindInstanceFields(this)
-            binder.bean = SafeModel.bindingBean
+            binder.writeBean(SafeModel.bindingBean)
+            SafeModel.propertiesView.binder.readBean(SafeModel.bindingBean)
+            select()
+        }
+        textField.addValueChangeListener {
+            println("Ich bin neikommet")
+            SafeModel.propertiesView.valueField.focus() // Krücke
+            binder.writeBean(SafeModel.bindingBean)
+            SafeModel.propertiesView.binder.readBean(SafeModel.bindingBean)
         }
     }
 
