@@ -33,14 +33,14 @@ class TextFieldBrick : Brick() {
         })
         addListener(ClickEvent::class.java) {
             binder.writeBean(ViewModel.textFieldBean)
-            ViewModel.propertiesView.binder.readBean(ViewModel.textFieldBean)
+            ViewModel.propertiesView.textFieldValueBinder.readBean(ViewModel.textFieldBean)
             select()
         }
         textField.addValueChangeListener {
             println("Ich bin neikommet")
             ViewModel.propertiesView.valueField.focus() // Krücke
             binder.writeBean(ViewModel.textFieldBean)
-            ViewModel.propertiesView.binder.readBean(ViewModel.textFieldBean)
+            ViewModel.propertiesView.textFieldValueBinder.readBean(ViewModel.textFieldBean)
         }
     }
 
