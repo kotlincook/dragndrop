@@ -6,7 +6,6 @@ import de.kotlincook.vaadin.bricksview.bricks.LabelBrick
 import de.kotlincook.vaadin.bricksview.bricks.Brick
 import de.kotlincook.vaadin.bricksview.bricks.TextAreaBrick
 import de.kotlincook.vaadin.bricksview.bricks.TextFieldBrick
-import de.kotlincook.vaadin.model.SafeModel
 import de.kotlincook.vaadin.vaadinutil.pullDraggedComponent
 import de.kotlincook.vaadin.sampleview.samples.LabelSample
 import de.kotlincook.vaadin.sampleview.samples.TextAreaSample
@@ -16,7 +15,6 @@ import de.kotlincook.vaadin.sampleview.samples.TextFieldSample
 class BricksView : DragNDropVerticalLayout() {
     init {
         isSpacing = false
-        SafeModel.bricksView = this
     }
 
     override fun createDropArea(): Component {

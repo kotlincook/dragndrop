@@ -1,15 +1,13 @@
 package de.kotlincook.vaadin.bricksview.bricks
 
 import com.vaadin.flow.component.ClickEvent
-import com.vaadin.flow.component.Key
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.data.binder.Binder
-import com.vaadin.flow.data.binder.PropertyId
 import de.kotlincook.vaadin.bricksview.BricksView
 import de.kotlincook.vaadin.bricksview.Copy
 import de.kotlincook.vaadin.bricksview.Trash
-import de.kotlincook.vaadin.model.SafeModel
-import de.kotlincook.vaadin.model.TextfieldBean
+import de.kotlincook.vaadin.viewmodel.ViewModel
+import de.kotlincook.vaadin.viewmodel.TextFieldBean
 import de.kotlincook.vaadin.vaadinutil.ancestor
 import kotlin.streams.toList
 
@@ -17,9 +15,9 @@ class TextFieldBrick : Brick() {
 
     val textField = TextField().apply {
         className = "textfield"
-        value = "text field valueField"
+        value = "default text"
     }
-    val binder =  Binder(TextfieldBean::class.java).apply {
+    val binder =  Binder(TextFieldBean::class.java).apply {
         forMemberField(textField).bind("value")
     }
 
@@ -34,15 +32,15 @@ class TextFieldBrick : Brick() {
             ancestor(BricksView::class).double(this, this.clone())
         })
         addListener(ClickEvent::class.java) {
-            binder.writeBean(SafeModel.bindingBean)
-            SafeModel.propertiesView.binder.readBean(SafeModel.bindingBean)
+            binder.writeBean(ViewModel.textFieldBean)
+            ViewModel.propertiesView.binder.readBean(ViewModel.textFieldBean)
             select()
         }
         textField.addValueChangeListener {
             println("Ich bin neikommet")
-            SafeModel.propertiesView.valueField.focus() // Krücke
-            binder.writeBean(SafeModel.bindingBean)
-            SafeModel.propertiesView.binder.readBean(SafeModel.bindingBean)
+            ViewModel.propertiesView.valueField.focus() // Krücke
+            binder.writeBean(ViewModel.textFieldBean)
+            ViewModel.propertiesView.binder.readBean(ViewModel.textFieldBean)
         }
     }
 
