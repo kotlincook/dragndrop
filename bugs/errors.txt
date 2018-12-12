@@ -1,0 +1,1 @@
+java.lang.IllegalStateException: Cannot access state in VaadinSession or UI without locking the session.

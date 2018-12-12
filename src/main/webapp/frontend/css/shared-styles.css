@@ -5,12 +5,14 @@
 .textfield {
 	margin-left: 40px;
 	background-color: whitesmoke;
+	padding-top: 5px;
 }
 
 .textarea {
 	margin-left: 40px;
 	max-height: 72px;
 	min-height: 72px;
+	padding-top: 5px;
 	background-color: whitesmoke;
 }
 
@@ -41,11 +43,11 @@
 }
 
 .textfield-brick {
-	height: 44px;
+	height: 68px;
 }
 
 .textarea-brick {
-	height: 80px;
+	height: 83px;
 }
 
 

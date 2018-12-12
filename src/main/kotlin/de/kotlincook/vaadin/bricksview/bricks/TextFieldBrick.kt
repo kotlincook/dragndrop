@@ -15,10 +15,12 @@ class TextFieldBrick : Brick() {
 
     val textField = TextField().apply {
         className = "textfield"
-        value = "default text"
+        value = "Default text"
+        label = "Label text"
     }
     val binder =  Binder(TextFieldBean::class.java).apply {
         forMemberField(textField).bind("value")
+//        forMemberField(textField).bind("label")
     }
 
     init {
@@ -38,7 +40,8 @@ class TextFieldBrick : Brick() {
         }
         textField.addValueChangeListener {
             println("Ich bin neikommet")
-            ViewModel.propertiesView.valueField.focus() // Krücke
+            // textField.label = "Geht das?" // Nein!
+            // ViewModel.propertiesView.valueField.focus() // Krücke
             binder.writeBean(ViewModel.textFieldBean)
             ViewModel.propertiesView.textFieldValueBinder.readBean(ViewModel.textFieldBean)
         }
