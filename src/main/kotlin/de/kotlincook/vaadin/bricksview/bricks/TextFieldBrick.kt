@@ -1,11 +1,13 @@
 package de.kotlincook.vaadin.bricksview.bricks
 
 import com.vaadin.flow.component.ClickEvent
+import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.data.binder.Binder
 import de.kotlincook.vaadin.bricksview.BricksView
 import de.kotlincook.vaadin.bricksview.Copy
 import de.kotlincook.vaadin.bricksview.Trash
+import de.kotlincook.vaadin.vaadinutil.LabelForBinder
 import de.kotlincook.vaadin.viewmodel.ViewModel
 import de.kotlincook.vaadin.viewmodel.TextFieldBean
 import de.kotlincook.vaadin.vaadinutil.ancestor
@@ -16,21 +18,31 @@ class TextFieldBrick : Brick() {
     val textField = TextField().apply {
         className = "textfield"
         value = "Default text"
-        label = "Label text"
+    }
+
+    val textFieldLabel = LabelForBinder().apply {
+        className = "textfield-label"
+        value = "Label text"
     }
     val binder =  Binder(TextFieldBean::class.java).apply {
         forMemberField(textField).bind("value")
-//        forMemberField(textField).bind("label")
+        forMemberField(textFieldLabel).bind("label")
     }
 
     init {
         className = "brick textfield-brick"
-        add(textField)
-
-        add(Trash {
+        add(Div().apply {
+            className = "label-field-pair"
+            add(textFieldLabel)
+            add(textField)
+        })
+        val div2 = Div()
+        div2.className = "control-group"
+        add(div2)
+        div2.add(Trash {
             ancestor(BricksView::class).delete(this)
         })
-        add(Copy {
+        div2.add(Copy {
             ancestor(BricksView::class).double(this, this.clone())
         })
         addListener(ClickEvent::class.java) {

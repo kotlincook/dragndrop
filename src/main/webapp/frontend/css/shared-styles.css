@@ -2,10 +2,43 @@
 	background-color: #e8ceac;
 }
 
+.left-view {
+	width: 20%;
+	/*min-width: 230px;*/
+}
+
+.bricks-view {
+	width: 50%;
+}
+
+.sample-view {
+	width: 30%;
+}
+
+
 .textfield {
 	margin-left: 40px;
 	background-color: whitesmoke;
+	padding-top: 0px;
+}
+
+.textfield-label {
+	margin-left: 40px;
+	background-color: whitesmoke;
 	padding-top: 5px;
+	width: 210px;
+	display:inline-block;
+	font-size: smaller;
+}
+
+.label-field-pair {
+	width: 250px;
+	position: absolute;
+}
+
+.control-group {
+	width: 330px;
+	float: right;
 }
 
 .textarea {
@@ -44,6 +77,7 @@
 
 .textfield-brick {
 	height: 68px;
+	min-width: 300px;
 }
 
 .textarea-brick {
