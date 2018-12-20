@@ -2,6 +2,7 @@ package de.kotlincook.vaadin.vaadinutil
 
 import com.vaadin.flow.component.Component
 import kotlin.reflect.KClass
+import kotlin.streams.toList
 
 fun <T : Any>Component.ancestorOrNull(clazz: KClass<T>): T? {
     var candidate = this
@@ -18,6 +19,10 @@ fun <T : Any>Component.ancestor(clazz: KClass<T>): T {
     throw IllegalStateException("There is no ancestor with class $clazz.")
 }
 
+fun Component.descendends(): List<Component> {
+    val childList = children.toList()
+    return childList + childList.flatMap { it.descendends() }
+}
 
 inline fun <reified T>Component.ancestor2(): T? {
     if (this is T) return this // Dies ist notwendig, ganz extra zu behandeln!

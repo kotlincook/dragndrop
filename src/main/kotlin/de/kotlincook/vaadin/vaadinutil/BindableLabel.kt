@@ -6,11 +6,11 @@ import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.shared.Registration
 
 
-class LabelForBinder : Label, HasValue<HasValue.ValueChangeEvent<String>, String> {
+class BindableLabel : Label, HasValue<HasValue.ValueChangeEvent<String>, String> {
 
-    constructor() {}
+    constructor()
 
-    constructor(text: String) : super(text) {}
+    constructor(text: String) : super(text)
 
     override fun setValue(value: String) {
         text = value

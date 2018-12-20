@@ -3,28 +3,24 @@ package de.kotlincook.vaadin.bricksview.bricks
 import com.vaadin.flow.component.ClickEvent
 import com.vaadin.flow.component.html.Label
 import de.kotlincook.vaadin.bricksview.BricksView
-import de.kotlincook.vaadin.bricksview.Copy
-import de.kotlincook.vaadin.bricksview.SelectArea
-import de.kotlincook.vaadin.bricksview.Trash
 import de.kotlincook.vaadin.vaadinutil.ancestor
 
 class LabelBrick : Brick() {
 
     val label = Label("").apply {
         className = "label"
-        text = "label text"
+        text = "Label text"
     }
+
+    val controlGroup = ControlGroup(
+            { ancestor(BricksView::class).double(this, this.clone()) },
+            { ancestor(BricksView::class).delete(this) })
 
     init {
         className = "brick label-brick"
         add(label)
+        add(controlGroup)
 
-        add(Trash {
-            ancestor(BricksView::class).delete(this)
-        })
-        add(Copy {
-            ancestor(BricksView::class).double(this, this.clone())
-        })
         addListener(ClickEvent::class.java) {
             select()
         }

@@ -2,15 +2,15 @@ package de.kotlincook.vaadin.bricksview.bricks
 
 import com.vaadin.flow.component.ClickEvent
 import com.vaadin.flow.component.html.Div
+import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.data.binder.Binder
 import de.kotlincook.vaadin.bricksview.BricksView
-import de.kotlincook.vaadin.bricksview.Copy
-import de.kotlincook.vaadin.bricksview.Trash
-import de.kotlincook.vaadin.vaadinutil.LabelForBinder
+import de.kotlincook.vaadin.vaadinutil.BindableLabel
 import de.kotlincook.vaadin.viewmodel.ViewModel
 import de.kotlincook.vaadin.viewmodel.TextFieldBean
 import de.kotlincook.vaadin.vaadinutil.ancestor
+import de.kotlincook.vaadin.vaadinutil.descendends
 import kotlin.streams.toList
 
 class TextFieldBrick : Brick() {
@@ -20,18 +20,18 @@ class TextFieldBrick : Brick() {
         value = "Default text"
     }
 
-    val textFieldLabel = LabelForBinder().apply {
+    val textFieldLabel = BindableLabel().apply {
         className = "textfield-label cursor-grabbing"
         value = "Label text"
     }
 
-    private val labelFieldPair = Div().apply {
+    val labelFieldPair = Div().apply {
         className = "label-field-pair"
         add(textFieldLabel)
         add(textField)
     }
 
-    private val controlGroup = ControlGroup(
+    val controlGroup = ControlGroup(
             { ancestor(BricksView::class).double(this, this.clone()) },
             { ancestor(BricksView::class).delete(this) })
 
@@ -61,10 +61,11 @@ class TextFieldBrick : Brick() {
     // TODO rekursiv machen
     override fun clone(): TextFieldBrick {
         val clone = TextFieldBrick()
-        val zip = children.toList().zip(clone.children.toList())
+        val zip = descendends().zip(clone.descendends())
         for ((source, dest) in zip) {
             when {
                 source is TextField && dest is TextField -> dest.value = source.value
+                source is Label && dest is Label -> dest.text = source.text
             }
         }
         return clone
