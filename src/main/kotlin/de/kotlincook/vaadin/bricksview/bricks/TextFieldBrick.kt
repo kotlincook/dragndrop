@@ -21,9 +21,20 @@ class TextFieldBrick : Brick() {
     }
 
     val textFieldLabel = LabelForBinder().apply {
-        className = "textfield-label"
+        className = "textfield-label cursor-grabbing"
         value = "Label text"
     }
+
+    private val labelFieldPair = Div().apply {
+        className = "label-field-pair"
+        add(textFieldLabel)
+        add(textField)
+    }
+
+    private val controlGroup = ControlGroup(
+            { ancestor(BricksView::class).double(this, this.clone()) },
+            { ancestor(BricksView::class).delete(this) })
+
     val binder =  Binder(TextFieldBean::class.java).apply {
         forMemberField(textField).bind("value")
         forMemberField(textFieldLabel).bind("label")
@@ -31,29 +42,15 @@ class TextFieldBrick : Brick() {
 
     init {
         className = "brick textfield-brick"
-        add(Div().apply {
-            className = "label-field-pair"
-            add(textFieldLabel)
-            add(textField)
-        })
-        val div2 = Div()
-        div2.className = "control-group"
-        add(div2)
-        div2.add(Trash {
-            ancestor(BricksView::class).delete(this)
-        })
-        div2.add(Copy {
-            ancestor(BricksView::class).double(this, this.clone())
-        })
+        add(labelFieldPair)
+        add(controlGroup)
+
         addListener(ClickEvent::class.java) {
             binder.writeBean(ViewModel.textFieldBean)
             ViewModel.propertiesView.textFieldValueBinder.readBean(ViewModel.textFieldBean)
             select()
         }
         textField.addValueChangeListener {
-            println("Ich bin neikommet")
-            // textField.label = "Geht das?" // Nein!
-            // ViewModel.propertiesView.valueField.focus() // Krücke
             binder.writeBean(ViewModel.textFieldBean)
             ViewModel.propertiesView.textFieldValueBinder.readBean(ViewModel.textFieldBean)
         }
@@ -61,6 +58,7 @@ class TextFieldBrick : Brick() {
 
     // https://vaadin.com/blog/vaadin-8-binder
 
+    // TODO rekursiv machen
     override fun clone(): TextFieldBrick {
         val clone = TextFieldBrick()
         val zip = children.toList().zip(clone.children.toList())

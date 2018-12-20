@@ -35,16 +35,16 @@ fun Page.addDropSupport(element: Element) {
     |// both the dragover handler and "e.preventDefault()" are essential
     |function handleDrop(e) {
     |  console.log("DROP")
-    |  this.classList.remove('hoverActive');
+    |  this.classList.remove('hover-active');
     |  e.preventDefault();
     |}
     |function handleDragEnter(e) {
     |   // this / e.target is the current hover target.
-    |   this.classList.add('hoverActive');
+    |   this.classList.add('hover-active');
     |}
     |function handleDragLeave(e) {
     |   // this / e.target is the current hover target.
-    |   this.classList.remove('hoverActive');
+    |   this.classList.remove('hover-active');
     |}
     |function handleDragover(e) {
     |   // this.style.backgroundColor = 'yellow';

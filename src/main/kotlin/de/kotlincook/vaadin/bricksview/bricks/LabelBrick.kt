@@ -10,11 +10,13 @@ import de.kotlincook.vaadin.vaadinutil.ancestor
 
 class LabelBrick : Brick() {
 
+    val label = Label("").apply {
+        className = "label"
+        text = "label text"
+    }
+
     init {
         className = "brick label-brick"
-        val label = Label("")
-        label.className = "label"
-        label.text = "label text"
         add(label)
 
         add(Trash {
@@ -26,9 +28,6 @@ class LabelBrick : Brick() {
         addListener(ClickEvent::class.java) {
             select()
         }
-//        add(SelectArea {
-//            select()
-//        })
     }
 
     override fun clone(): LabelBrick {

@@ -1,5 +1,9 @@
-.hoverActive {
+.hover-active {
 	background-color: #e8ceac;
+}
+
+.cursor-grabbing {
+	cursor:grabbing;
 }
 
 .left-view {
