@@ -19,9 +19,9 @@ fun <T : Any>Component.ancestor(clazz: KClass<T>): T {
     throw IllegalStateException("There is no ancestor with class $clazz.")
 }
 
-fun Component.descendends(): List<Component> {
+fun Component.descendants(): List<Component> {
     val childList = children.toList()
-    return childList + childList.flatMap { it.descendends() }
+    return childList + childList.flatMap { it.descendants() }
 }
 
 inline fun <reified T>Component.ancestor2(): T? {

@@ -11,14 +11,25 @@ const val ATTR_KEY_DRAGGED_COMPONENT = "DRAGGED_COMPONENT"
 
 fun pullDraggedComponent(): Component? {
     val session = UI.getCurrent().session
-    val draggedComp = session.getAttribute(ATTR_KEY_DRAGGED_COMPONENT) as Component?
-    session.setAttribute(ATTR_KEY_DRAGGED_COMPONENT, null)
-    return draggedComp
+    session.lock()
+    try {
+        val draggedComp = session.getAttribute(ATTR_KEY_DRAGGED_COMPONENT)
+        session.setAttribute(ATTR_KEY_DRAGGED_COMPONENT, null)
+        return draggedComp as Component?
+    } finally {
+        session.unlock()
+    }
 }
+
 
 fun pushDraggedComponent(component: Component) {
     val session = UI.getCurrent().session
-    session.setAttribute(ATTR_KEY_DRAGGED_COMPONENT, component)
+    session.lock()
+    try {
+        session.setAttribute(ATTR_KEY_DRAGGED_COMPONENT, component)
+    } finally {
+        session.unlock()
+    }
 }
 
 

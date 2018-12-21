@@ -10,8 +10,7 @@ import de.kotlincook.vaadin.vaadinutil.BindableLabel
 import de.kotlincook.vaadin.viewmodel.ViewModel
 import de.kotlincook.vaadin.viewmodel.TextFieldBean
 import de.kotlincook.vaadin.vaadinutil.ancestor
-import de.kotlincook.vaadin.vaadinutil.descendends
-import kotlin.streams.toList
+import de.kotlincook.vaadin.vaadinutil.descendants
 
 class TextFieldBrick : Brick() {
 
@@ -58,10 +57,9 @@ class TextFieldBrick : Brick() {
 
     // https://vaadin.com/blog/vaadin-8-binder
 
-    // TODO rekursiv machen
     override fun clone(): TextFieldBrick {
         val clone = TextFieldBrick()
-        val zip = descendends().zip(clone.descendends())
+        val zip = descendants().zip(clone.descendants())
         for ((source, dest) in zip) {
             when {
                 source is TextField && dest is TextField -> dest.value = source.value
