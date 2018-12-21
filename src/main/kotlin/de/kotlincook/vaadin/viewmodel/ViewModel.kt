@@ -7,7 +7,9 @@ object ViewModel {
 
     lateinit var mainView: MainView
     val bricksView get() = mainView.bricksView
-    val propertiesView get() = mainView.leftView.propertiesView
+    var propertiesView
+        get() = mainView.leftView.propertiesView
+        set(value) { mainView.leftView.propertiesView = value }
 
     fun selectedBrick() = bricksView.essentialComps.find { it is Brick && it.selected }
 

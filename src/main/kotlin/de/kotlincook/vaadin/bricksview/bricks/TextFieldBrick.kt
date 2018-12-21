@@ -6,6 +6,7 @@ import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.data.binder.Binder
 import de.kotlincook.vaadin.bricksview.BricksView
+import de.kotlincook.vaadin.propertyview.TextFieldPropertiesView
 import de.kotlincook.vaadin.vaadinutil.BindableLabel
 import de.kotlincook.vaadin.viewmodel.ViewModel
 import de.kotlincook.vaadin.viewmodel.TextFieldBean
@@ -43,15 +44,16 @@ class TextFieldBrick : Brick() {
         className = "brick textfield-brick"
         add(labelFieldPair)
         add(controlGroup)
+//        ViewModel.propertiesView = TextFieldPropertiesView()
 
         addListener(ClickEvent::class.java) {
             binder.writeBean(ViewModel.textFieldBean)
-            ViewModel.propertiesView.textFieldValueBinder.readBean(ViewModel.textFieldBean)
+            ViewModel.propertiesView.propertiesBinder.readBean(ViewModel.textFieldBean)
             select()
         }
         textField.addValueChangeListener {
             binder.writeBean(ViewModel.textFieldBean)
-            ViewModel.propertiesView.textFieldValueBinder.readBean(ViewModel.textFieldBean)
+            ViewModel.propertiesView.propertiesBinder.readBean(ViewModel.textFieldBean)
         }
     }
 

@@ -47,12 +47,12 @@ class TextAreaBrick : Brick() {
 
         addListener(ClickEvent::class.java) {
             binder.writeBean(ViewModel.textFieldBean)
-            ViewModel.propertiesView.textFieldValueBinder.readBean(ViewModel.textFieldBean)
+            ViewModel.propertiesView.propertiesBinder.readBean(ViewModel.textFieldBean)
             select()
         }
         textArea.addValueChangeListener {
             binder.writeBean(ViewModel.textFieldBean)
-            ViewModel.propertiesView.textFieldValueBinder.readBean(ViewModel.textFieldBean)
+            ViewModel.propertiesView.propertiesBinder.readBean(ViewModel.textFieldBean)
         }
     }
 
