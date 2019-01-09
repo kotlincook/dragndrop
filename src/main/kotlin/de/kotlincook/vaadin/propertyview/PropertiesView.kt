@@ -5,5 +5,5 @@ import com.vaadin.flow.data.binder.Binder
 
 abstract class PropertiesView: VerticalLayout() {
 
-    abstract val propertiesBinder: Binder<*>
+    abstract val propertiesBinder: Binder<Any>
 }

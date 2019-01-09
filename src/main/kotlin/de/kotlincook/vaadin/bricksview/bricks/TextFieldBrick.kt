@@ -44,17 +44,18 @@ class TextFieldBrick : Brick() {
         className = "brick textfield-brick"
         add(labelFieldPair)
         add(controlGroup)
-//        ViewModel.propertiesView = TextFieldPropertiesView()
 
         addListener(ClickEvent::class.java) {
             binder.writeBean(ViewModel.textFieldBean)
+//            ViewModel.propertiesView = TextFieldPropertiesView()
             ViewModel.propertiesView.propertiesBinder.readBean(ViewModel.textFieldBean)
             select()
+            textField.addValueChangeListener {
+                binder.writeBean(ViewModel.textFieldBean)
+                ViewModel.propertiesView.propertiesBinder.readBean(ViewModel.textFieldBean)
+            }
         }
-        textField.addValueChangeListener {
-            binder.writeBean(ViewModel.textFieldBean)
-            ViewModel.propertiesView.propertiesBinder.readBean(ViewModel.textFieldBean)
-        }
+
     }
 
     // https://vaadin.com/blog/vaadin-8-binder
